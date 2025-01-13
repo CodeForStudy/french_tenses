@@ -1,0 +1,91 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 20vw 80vw;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 1.2rem;
+}
+.sidebar {
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    height: 100vh;
+    overflow-y: auto;
+}
+.main-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+.sidebar a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.sidebar a:hover {
+    background-color: #ddd;
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vw;
+    font-size: 5vw;
+}
+
+.title {
+    margin-top: 0;
+    font-size: 5rem;
+}
+
+.subtitle {
+    font-size: 1.7rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
+}
+
+p {
+    line-height: 1.5;
+}
+
+.list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.list li {
+    margin-bottom: 10px;
+}
+
+.table {
+    margin-top: 2rem;
+    border-collapse: collapse;
+    width: 80%
+}
+
+.table th,
+.table td {
+    border: 1px solid #949494;
+    padding: 8px;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.table tr:nth-child(1) th,
+.table tr:nth-child(1) td,
+.table td:nth-child(1) {
+    background-color: #e0e0e0;
+}
+footer {
+    height: 10vh;
+}

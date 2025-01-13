@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices de conjugaison française</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="exercises.css">
+    <script>
+        function loadContent(url) {
+            fetch(`content/${url}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.main-content').innerHTML = data;
+                    lueckentext.generateSentences(document.getElementById('test'), 2);
+                })
+                .catch(error => console.error('Fehler:', error));
+        }
+    </script>
+</head>
+<body onload="loadContent('start.html')">
+    <div class="sidebar">
+        <h2 onclick="loadContent('start.html')"><strong>Französisch</strong></h2>
+        <h3>Zeitformen</h3>
+        <a onclick="loadContent('passeSimple.html')">Passé simple</a>
+        <a onclick="loadContent('passeCompose.html')">Passé Composé</a>
+        <a onclick="loadContent('imparfait.html')">Imparfait</a>
+        <a onclick="loadContent('plusQueParfait.html')">Plus-que-parfait</a>
+        <a onclick="loadContent('present.html')">Présent</a>
+        <a onclick="loadContent('futurSimple.html')">Futur Simple</a>
+        <a onclick="loadContent('conditionnelPresent.html')">Conditionnel présent</a>
+        <h3>Übungen</h3>
+        <a onclick="loadContent('exercise1.html')">Übung 1</a>
+        <a onclick="loadContent('exercise2.html')">Übung 2</a>
+        <a onclick="loadContent('exercise3.html')">Übung 3</a>
+        <a onclick="loadContent('exercise4.html')">Übung 4</a>
+        <a onclick="loadContent('exercise5.html')" onContentLoad="alert('tewst');">Übung 5</a>
+    </div>
+
+    <div class="main-content"></div>
+
+
+    <script id="lueckentext_data" type="application/json" src="json/lueckentext.json"></script>
+
+
+    <script src="content/exercises.js"></script>
+    
+</body>
+</html>

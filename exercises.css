@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+.lueckentext, .lueckentext div span {
+
+    width: 60%;
+    margin: 0 20%;
+
+    .gap {
+        width: 200px;
+        display: inline-block;
+        border: 1px solid black;
+        vertical-align: middle;
+        min-height: 24px;
+        margin: -100% 0;
+
+        p {
+            font-size: var(--font-size);
+            line-height: var(--font-size);;
+            margin: 7px;
+        }
+    }
+
+    .wrong {
+        border: 2px solid red;
+    }
+    .right {
+        border: 2px solid green;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        margin-top: 40px;
+
+        p {
+            width: 200px;
+        }
+    }
+}
