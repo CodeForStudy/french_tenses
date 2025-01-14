@@ -3,7 +3,7 @@ function unique_id() {
     return id;
 }
 
-function choose_json(arr, amount) {
+function choose_array(arr, amount) {
     const shuffled = arr.slice();
 
     for (let i=0; i < shuffled.length; i++) {
@@ -11,11 +11,12 @@ function choose_json(arr, amount) {
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    const output = shuffled.slice(0, amount);
-
+    let output = shuffled.slice(0, amount);
+    /*
     if (output.length < amount) {
-        output.concat(choose_json(arr, amount-output.length));
+        output = output.concat(choose_json(arr, amount-output.length));
     }
+    */
     return output;
 }
 
@@ -94,6 +95,10 @@ const lueckentext = {
         container.ondrop = function(event){ lueckentext.drop(event, taskname); };
         container.ondragover = function(event){ lueckentext.allowDrop(event); };
 
+        const check_button = document.createElement('button');
+        check_button.onclick = function(event){ lueckentext.check(event); };
+        check_button.innerHTML = 'Check';
+
         function createGap(solution) {
             const gap = document.createElement("div");
             gap.classList.add('gap');
@@ -112,8 +117,18 @@ const lueckentext = {
             label.innerHTML = name;
             return label;
         }
+
+        function shuffle_childs(element) {
+            let children = Array.from(element.children);
+            children = choose_array(children, children.length);
+            for(let i=0; i<children.length; i++){
+                element.appendChild(children[i]);
+            }
+            return element;
+        }
+
         const json_data = await load_json('lueckentext.json');
-        const content = choose_json(JSON.parse(json_data), amount);
+        const content = choose_array(JSON.parse(json_data), amount);
 
         for( var i=0; i<content.length; i++ ) {
             let data = String(content[i][0]);
@@ -130,7 +145,13 @@ const lueckentext = {
         }
 
         e.appendChild(text);
-        e.appendChild(container);
+        e.appendChild(shuffle_childs(container));
+        e.appendChild(check_button);
     }
-}
+};
 // lueckentext.generateSentences(document.getElementById('test'), 2);
+
+
+const multiplechoice = {
+
+};
