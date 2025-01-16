@@ -33,14 +33,14 @@ async function load_json(path) {
     }
 }
 
-function load_exercise(classname) {
+function load_exercise(classname, amount) {
     const elements = document.getElementsByClassName(classname);
     for( let i=0; i<elements.length; i++) {
-        window[classname].generate(elements[i], 4);
+        window[classname].generate(elements[i], amount);
     }
 }
 
-var lueckentext = {
+var gaptext = {
     allowDrop: function(e) {
         e.preventDefault();
     },
@@ -97,19 +97,19 @@ var lueckentext = {
 
         const container = document.createElement("div");
         container.classList.add("container");
-        container.ondrop = function(event){ lueckentext.drop(event, taskname); };
-        container.ondragover = function(event){ lueckentext.allowDrop(event); };
+        container.ondrop = function(event){ gaptext.drop(event, taskname); };
+        container.ondragover = function(event){ gaptext.allowDrop(event); };
 
         const check_button = document.createElement("button");
-        check_button.onclick = function(event){ lueckentext.check(event); };
+        check_button.onclick = function(event){ gaptext.check(event); };
         check_button.innerHTML = "Check";
 
         function createGap(solution) {
             const gap = document.createElement("div");
             gap.classList.add("gap");
             gap.dataset.solution = String(solution);
-            gap.ondrop = function(event){ lueckentext.drop(event, taskname); };
-            gap.ondragover = function(event){ lueckentext.allowDrop(event); };
+            gap.ondrop = function(event){ gaptext.drop(event, taskname); };
+            gap.ondragover = function(event){ gaptext.allowDrop(event); };
             return gap;
         }
 
@@ -118,7 +118,7 @@ var lueckentext = {
             label.classList.add(taskname);
             label.setAttribute("draggable", true);
             label.id = id;
-            label.ondragstart = function(event){ lueckentext.drag(event); };
+            label.ondragstart = function(event){ gaptext.drag(event); };
             label.innerHTML = name;
             return label;
         }
@@ -132,7 +132,7 @@ var lueckentext = {
             return element;
         }
 
-        const json_data = await load_json("lueckentext.json");
+        const json_data = await load_json("gaptext.json");
         const content = choose_array(JSON.parse(json_data), amount);
 
         for( var i=0; i<content.length; i++ ) {
@@ -154,7 +154,7 @@ var lueckentext = {
         e.appendChild(check_button);
     }
 };
-// lueckentext.generateSentences(document.getElementById("test"), 2);
+// gaptext.generateSentences(document.getElementById("test"), 2);
 
 
 var multiplechoice = {
@@ -231,3 +231,78 @@ var multiplechoice = {
         e.appendChild(checkbutton);
     }
 };
+
+var conjugateverbs = {
+    check: function(e) {
+
+        function similarityIndex(word1, word2) {
+            function normalizeFrench(word) {
+                // Konvertiere in Kleinbuchstaben und entferne nicht alphabetische Zeichen
+                return word.toLowerCase().replace(/[^a-zàáâäãåèéêëìíîïòóôöõùúûüçœæ]/g, "");
+            }
+            
+            function frenchPhonetic(word) {
+                // Behalte Akzente, aber wende phonetische Regeln an
+                word = normalizeFrench(word);
+            
+                if (!word) return "";
+            
+                const phoneticRules = [
+                    [/ph/g, "f"],   // ph -> f
+                    [/gn/g, "n"],   // gn -> n
+                    [/ch/g, "sh"],  // ch -> sh
+                    [/cq|k|qu/g, "k"], // cq, k, qu -> k
+                    [/g(?=[eiy])/g, "j"], // g vor e, i, y -> j
+                    [/c(?=[eiy])/g, "s"], // c vor e, i, y -> s
+                    [/t(?=ion)/g, "s"],   // t vor ion -> s
+                ];
+            
+                phoneticRules.forEach(([pattern, replacement]) => {
+                    word = word.replace(pattern, replacement);
+                });
+            
+                word = word.replace(/(.)\1+/g, "$1"); // Entferne doppelte Buchstaben
+            
+                return word;
+            }
+
+            // Behalte Akzente in der phonetischen Kodierung
+            const phonetic1 = frenchPhonetic(word1);
+            const phonetic2 = frenchPhonetic(word2);
+        
+            const maxLength = Math.max(word1.length, word2.length);
+            let matchCount = 0;
+        
+            // Zähle übereinstimmende Zeichen an denselben Positionen
+            for (let i = 0; i < Math.min(phonetic1.length, phonetic2.length); i++) {
+                if (phonetic1[i] === phonetic2[i]) {
+                    matchCount++;
+                }
+            }
+        
+            // Index: Übereinstimmungen geteilt durch durchschnittliche Länge der Wörter
+            const averageLength = (phonetic1.length + phonetic2.length) / 2;
+            return (matchCount / averageLength).toFixed(2);
+        }
+        
+
+        const equality = similarityIndex(e[0], e[1]);
+
+        let right = [];
+        let moderate = [];
+        let wrong = [];
+
+        // V V V  
+        for(let i=0; i<choices.length; i++) {
+            console.log(choices[i].dataset.solution == String(choices[i].children[0].checked));
+            if (choices[i].dataset.solution == String(choices[i].children[0].checked)) {
+                right.push(choices[i]);
+            } else {
+                wrong.push(choices[i]);
+            }
+        }
+        this.setFeedback(right, wrong);
+    }
+};
+
+console.log(conjugateverbs.check(["élève", "élève"]));
