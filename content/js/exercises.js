@@ -33,10 +33,10 @@ async function load_json(path) {
     }
 }
 
-function load_exercise(classname, amount) {
+function load_exercise(classname, amount, settings) {
     const elements = document.getElementsByClassName(classname);
     for( let i=0; i<elements.length; i++) {
-        window[classname].generate(elements[i], amount);
+        window[classname].generate(elements[i], amount, settings);
     }
 }
 
@@ -163,7 +163,6 @@ var multiplechoice = {
         right = [];
         wrong = [];
         for(let i=0; i<choices.length; i++) {
-            console.log(choices[i].dataset.solution == String(choices[i].children[0].checked));
             if (choices[i].dataset.solution == String(choices[i].children[0].checked)) {
                 right.push(choices[i]);
             } else {
@@ -284,25 +283,74 @@ var conjugateverbs = {
             const averageLength = (phonetic1.length + phonetic2.length) / 2;
             return (matchCount / averageLength).toFixed(2);
         }
-        
-
-        const equality = similarityIndex(e[0], e[1]);
 
         let right = [];
         let moderate = [];
         let wrong = [];
+        const segments = e.target.parentElement.getElementsByClassName("segment");
 
-        // V V V  
-        for(let i=0; i<choices.length; i++) {
-            console.log(choices[i].dataset.solution == String(choices[i].children[0].checked));
-            if (choices[i].dataset.solution == String(choices[i].children[0].checked)) {
-                right.push(choices[i]);
+        for(let i=0; i<segments.length; i++) {
+            const equality = similarityIndex(segments[i].dataset.solution, String(segments[i].children[1].value));
+            console.log(equality);
+            if (equality == 1) {
+                right.push(segments[i]);
+            } else if (equality >= 0.85) {
+                moderate.push(segments[i]);
             } else {
-                wrong.push(choices[i]);
+                wrong.push(segments[i]);
             }
         }
-        this.setFeedback(right, wrong);
+        this.setFeedback(right, moderate, wrong);
+    },
+
+    setFeedback: function(right, moderate, wrong) {
+        const elements = right.concat(wrong);
+        for (let i=0; i<elements.length; i++) {
+            elements[i].classList.remove("right");
+            elements[i].classList.remove("moderate");
+            elements[i].classList.remove("wrong");
+        }
+        for (let i=0; i<right.length; i++) {
+            right[i].classList.add("right");
+        }
+        for (let i=0; i<moderate.length; i++) {
+            moderate[i].classList.add("moderate");
+        }
+        for (let i=0; i<wrong.length; i++) {
+            wrong[i].classList.add("wrong");
+        }
+    },
+
+    generate: async function(e, amount, settings) {
+        const tense = settings[0];
+
+        const json_data = await load_json("conjugateverbs.json");
+        const content = choose_array(JSON.parse(json_data)[tense], amount);
+
+        function createSegment(solution, text) {
+            const choice = document.createElement("div");
+            choice.classList.add("segment");
+            choice.dataset.solution = solution;
+
+            const label = document.createElement("p");
+            label.innerHTML = text;
+            choice.appendChild(label);
+
+            const input = document.createElement("input");
+            input.type = "text";
+            choice.appendChild(input);
+
+            return choice;
+        }
+
+        for (var i=0; i<content.length; i++) {
+            const choice = createSegment(content[i][1], content[i][0]);
+            e.appendChild(choice);
+        }
+
+        const checkbutton = document.createElement("button");
+        checkbutton.innerHTML = "check";
+        checkbutton.onclick = function(event) { conjugateverbs.check(event) };
+        e.appendChild(checkbutton);
     }
 };
-
-console.log(conjugateverbs.check(["élève", "élève"]));
