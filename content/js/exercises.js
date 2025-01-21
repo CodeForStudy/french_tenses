@@ -350,7 +350,77 @@ var conjugateverbs = {
 
         const checkbutton = document.createElement("button");
         checkbutton.innerHTML = "check";
-        checkbutton.onclick = function(event) { conjugateverbs.check(event) };
+        checkbutton.onclick = function(event) { conjugateverbs.check(event); };
         e.appendChild(checkbutton);
+    }
+};
+
+var memory = {
+    generate: async function(e, amount, settings) {
+        const tense = settings[0];
+
+        const json_data = await load_json("memory.json");
+        const content = choose_array(JSON.parse(json_data)[tense], amount);
+
+        const container = document.createElement("div");
+        container.classList.add("container");
+        
+        function createCard(text, id) {
+            const card = document.createElement("p");
+            card.classList.add("card");
+            card.dataset.id = id;
+            card.onclick = function (event) { memory.check(event); };
+            card.innerHTML = text;
+            return card;
+        }
+
+        let cards = [];
+        for (let i=0; i<content.length; i++) {
+            const id = unique_id();
+
+            for (let j=0; j < content[i].length; j++) {
+                const card = createCard(content[i][j], id);
+                cards.push(card);
+            }
+        }
+        cards = choose_array(cards, cards.length);
+        for (let i=0; i<cards.length; i++) {
+            container.appendChild(cards[i]);
+        }
+        e.appendChild(container);
+    },
+
+    check: function(e) {
+        const element = e.target.parentElement;
+
+        if (e.target.classList.contains("hidden")) {
+            return;
+        }
+
+        let actives = element.getElementsByClassName("active");
+        console.log(actives);
+        if (actives.length >= 2) {
+            const length = actives.length;
+            for (let i=0; i<length; i++) {
+                console.log(i);
+                actives[0].classList.remove("active");
+            }
+        }
+        e.target.classList.add("active");
+
+        if (actives.length == 2) {
+            let equal = true;
+            for (let i=0; i<actives.length-1; i++) {
+                if (actives[i].dataset.id != actives[i+1].dataset.id) {
+                    equal = false;
+                    break;
+                }
+            }
+            if (equal) {
+                for (let i=0; i<actives.length; i++) {
+                    actives[i].classList.add("hidden");
+                }
+            }
+        }
     }
 };
