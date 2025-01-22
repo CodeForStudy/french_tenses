@@ -116,6 +116,7 @@ var gaptext = {
         function createLabel(id, name) {
             const label = document.createElement("p");
             label.classList.add(taskname);
+            label.classList.add("label");
             label.setAttribute("draggable", true);
             label.id = id;
             label.ondragstart = function(event){ gaptext.drag(event); };
@@ -212,6 +213,7 @@ var multiplechoice = {
 
             const question = document.createElement("p");
             question.innerHTML = content[i][0];
+            question.classList.add("subsubtitle");
             container.appendChild(question);
 
             content[i][1] = choose_array(content[i][1], content[i][1].length);
@@ -370,7 +372,15 @@ var memory = {
             card.classList.add("card");
             card.dataset.id = id;
             card.onclick = function (event) { memory.check(event); };
-            card.innerHTML = text;
+
+            const front = document.createElement("p");
+            front.classList.add("front");
+            front.innerHTML = text;
+            const back = document.createElement("p");
+            back.classList.add("back");
+
+            card.appendChild(back);
+            card.appendChild(front);
             return card;
         }
 
@@ -393,20 +403,19 @@ var memory = {
     check: function(e) {
         const element = e.target.parentElement;
 
-        if (e.target.classList.contains("hidden")) {
+        if (element.classList.contains("hidden")) {
             return;
         }
+        
+        const actives = element.parentElement.getElementsByClassName("active");
 
-        let actives = element.getElementsByClassName("active");
-        console.log(actives);
         if (actives.length >= 2) {
             const length = actives.length;
             for (let i=0; i<length; i++) {
-                console.log(i);
                 actives[0].classList.remove("active");
             }
         }
-        e.target.classList.add("active");
+        element.classList.add("active");
 
         if (actives.length == 2) {
             let equal = true;

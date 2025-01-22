@@ -1,21 +1,25 @@
-.gaptext, .gaptext div span {
+body {
+    padding-right: 1.5vw;
+}
 
-    width: 60%;
-    margin: 0 20%;
-
+.gaptext{
     .gap {
-        width: 200px;
+        min-width: 200px;
         display: inline-block;
         border: 1px solid black;
         vertical-align: middle;
-        min-height: 24px;
+        min-height: 1.8rem;
         margin: -100% 0;
+        padding: 0 0.3rem;
+    }
 
-        p {
-            font-size: var(--font-size);
-            line-height: var(--font-size);;
-            margin: 5px;
-        }
+    p {
+        line-height: 2;
+    }
+
+    .label {
+        min-width: 200px;
+        line-height: 1.5;
     }
 
     .wrong {
@@ -26,12 +30,134 @@
     }
 
     .container {
-        display: flex;
-        width: 100%;
-        margin-top: 40px;
-
-        p {
-            width: 200px;
-        }
+        margin: 40px 0 0 0;
+        min-height: 1.8rem;
+        min-width: 30vw;
+        background-color: #dcdbdb;
+        padding: 1rem;
+        border-radius: 14px;
+        display: inline-flex;
+        gap: 3rem;
     }
+}
+
+.multiplechoice {
+    .choice {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .right {
+        color: green;
+    }
+    .wrong {
+        color: red;
+    }
+}
+
+.exercise {
+    margin-top: 3rem;
+}
+
+button {
+    display: block;
+    padding: 0.15rem 0.75rem;
+    border-radius: 14px;
+    margin-top: 40px;
+}
+
+.conjugateverbs {
+    .segment {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    input {
+        all: unset;
+        border: 1px solid black;
+        min-width: 200px;
+        padding: 0 0.5rem;
+    }
+
+    .right input {
+        border: 2px solid green;
+    }
+    .moderate input {
+        border: 2px solid darkgoldenrod;
+    }
+    .wrong input {
+        border: 2px solid red;
+    }
+}
+
+.memory {
+    .container {
+        display: flex;
+        justify-content: center;
+        gap: 5%;
+
+
+
+
+        .card {
+            width: 18%;
+            aspect-ratio: 3 / 2;
+            text-align: center;
+            transform-style: preserve-3d;
+            box-shadow: 8px 6px 9px 9px gray;
+            border: 1px solid gray;
+            border-radius: 18px;
+            transition: 0.8s;
+            perspective: 1000px;
+            
+
+            .front, .back {
+                height: 100%;
+                width: 100%;
+                -webkit-backface-visibility: hidden; /* Safari */
+                backface-visibility: hidden;
+                
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 18px;
+            }
+
+            .front {
+                transform: rotateY(180deg);
+                background-image: url("assets/card_front.jpg");
+                background-repeat: repeat;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 3rem;
+            }
+            .back {
+                background-image: url("assets/card_background.jpeg");
+                background-repeat: repeat;
+                background-position: center;
+            }
+
+        }
+        
+        .hidden {
+            animation: hide 1s ease;
+            animation-duration: 1.5s;
+            scale: 0;
+        }
+
+        .active {
+            transform: rotateY(180deg);
+            box-shadow: -8px 6px 9px 9px gray;
+        }
+        
+    }
+}
+
+@keyframes hide {
+    0% {scale: 1;}
+    75% {scale: 1;}
+    100% {scale: 0;}
 }

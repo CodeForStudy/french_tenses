@@ -2,5 +2,9 @@
     [
         "Chris's Frisur ist ___ .",
         [["gutaussehend", true], ["schwarz", true], ["blond", false]]
+    ],
+    [
+        "Jnnis's Frisur ist ___ .",
+        [["gutaussehend", true], ["schwarz", true], ["blond", false]]
     ]
 ]

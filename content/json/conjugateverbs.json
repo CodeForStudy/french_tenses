@@ -1,5 +1,6 @@
 {
     "conditionnelPresent": [
-        ["Je (avoir)", "avais"]
+        ["Je (avoir)", "avais"],
+        ["Tu (avoir)", "avais"]
     ]
 }
