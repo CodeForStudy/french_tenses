@@ -5,7 +5,7 @@ body {
 #toolbar {
     display: flex;
     gap: 30px;
-    vertical-align: center;
+    align-items: center;
 }
 
 .exercise {
@@ -17,6 +17,10 @@ button, select {
     padding: 0.15rem 0.75rem;
     border-radius: 14px;
     background-color: #dcdbdb;
+}
+
+#toolbar p {
+    padding: 0.15rem 0.75rem;
 }
 
 .gaptext{
@@ -69,6 +73,7 @@ button, select {
     .choice {
         display: flex;
         gap: 1rem;
+        vertical-align: center;
     }
 
     .right {
@@ -116,9 +121,6 @@ button, select {
         justify-content: center;
         gap: 2%;
 
-
-
-
         .card {
             width: 15%;
             aspect-ratio: 3 / 2;
@@ -152,7 +154,7 @@ button, select {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 3rem;
+                font-size: 2vw;
             }
             .back {
                 background-image: url("assets/card_back.jpeg");
