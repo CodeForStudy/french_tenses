@@ -8,6 +8,17 @@ body {
     vertical-align: center;
 }
 
+.exercise {
+    margin-top: 3rem;
+}
+
+button, select {
+    
+    padding: 0.15rem 0.75rem;
+    border-radius: 14px;
+    background-color: #dcdbdb;
+}
+
 .gaptext{
     .gap {
         min-width: 200px;
@@ -17,7 +28,6 @@ body {
         min-height: 1.8rem;
         margin: -100% 0;
         padding: 0 0.3rem;
-        -webkit-user-drop: element;
     }
 
     p {
@@ -27,7 +37,12 @@ body {
     .label {
         min-width: 200px;
         line-height: 1.5;
-        -webkit-user-drag: element;
+        border-radius: 12px;
+        padding: 0 5px;
+    }
+
+    .selected {
+        background-color: #99999999;
     }
 
     .wrong {
@@ -62,16 +77,6 @@ body {
     .wrong {
         color: red;
     }
-}
-
-.exercise {
-    margin-top: 3rem;
-}
-
-button, select {
-    
-    padding: 0.15rem 0.75rem;
-    border-radius: 14px;
 }
 
 .check {

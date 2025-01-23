@@ -48,7 +48,6 @@ var gaptext = {
     },
       
     drag: function(e) {
-        e.preventDefault();
         e.dataTransfer.setData("dnd", e.target.id);
     },
       
@@ -61,7 +60,35 @@ var gaptext = {
         if (e.target.parentElement.classList.contains("container")) {
             e.target.parentElement.appendChild(data);
         }
-    },    
+    },
+
+    touch_dataTransfer: undefined,
+
+    touch_select: function(e) {
+        const elements = document.getElementsByClassName("selected");
+        for (let i=0; i<elements.length; i++) {
+            elements[i].classList.remove("selected");
+        }
+
+        e.target.classList.add("selected");
+        gaptext.touch_dataTransfer = e.target;
+    },
+
+    touch_paste: function(e, tag) {
+        const data = this.touch_dataTransfer;
+        if (data.classList.contains(tag) && ((e.target.classList.contains("gap") && e.target.innerHTML == "") || e.target.classList.contains("container")) && data.parentElement != e.target) {
+            e.target.appendChild(data);
+            data.classList.remove("selected");
+            gaptext.touch_dataTransfer = undefined;
+        }
+        if (data.classList.contains(tag) && e.target.parentElement.classList.contains("container") && data.parentElement != e.target.parentElement) {
+            e.target.parentElement.appendChild(data);
+            data.classList.remove("selected");
+            gaptext.touch_dataTransfer = undefined;
+        }
+        
+    },
+
     check: function(e) {
         const gaps = e.target.parentElement.getElementsByClassName("gap");
         right = [];
@@ -103,6 +130,7 @@ var gaptext = {
         const container = document.createElement("div");
         container.classList.add("container");
         container.ondrop = function(event){ gaptext.drop(event, taskname); };
+        container.ontouchend = function(event){ gaptext.touch_paste(event, taskname); };
         container.ondragover = function(event){ gaptext.allowDrop(event); };
 
         const check_button = document.createElement("button");
@@ -115,6 +143,7 @@ var gaptext = {
             gap.classList.add("gap");
             gap.dataset.solution = String(solution);
             gap.ondrop = function(event){ gaptext.drop(event, taskname); };
+            gap.ontouchend = function(event){ gaptext.touch_paste(event, taskname); };
             gap.ondragover = function(event){ gaptext.allowDrop(event); };
             return gap;
         }
@@ -126,6 +155,7 @@ var gaptext = {
             label.setAttribute("draggable", true);
             label.id = id;
             label.ondragstart = function(event){ gaptext.drag(event); };
+            label.ontouchend = function(event){ gaptext.touch_select(event); };
             label.innerHTML = name;
             return label;
         }
