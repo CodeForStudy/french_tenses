@@ -14,9 +14,21 @@
 </head>
 <body>
     <h1 class="title">Lückentext</h1>
+    <div id="toolbar">
+        <label>Zeitform wählen:</label>
+        <select>
+            <option value="passeSimple">Passé simple</option>
+            <option value="passeCompose">Passé Composé</option>
+            <option value="imparfait">Imparfait</option>
+            <option value="plusQueParfait">Plus-que-parfait</option>
+            <option value="present">Présent</option>
+            <option value="futurSimple">Futur Simple</option>
+            <option value="conditionnelPresent">Conditionnel présent</option>
+        </select>
+        <button onclick="load_exercise('gaptext', 10);">Übung erstellen</button>
+    </div>
     <div class="gaptext exercise">
         
-        <br>
         <!--
         <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit 
@@ -37,9 +49,9 @@
         <button onclick="lueckentext.check(event)">Check</button>
         -->
     </div>
-
+    <footer></footer>
     <script>
-        load_exercise("gaptext", 4);
+        load_exercise("gaptext", 10);
     </script>
 </body>
 </html>

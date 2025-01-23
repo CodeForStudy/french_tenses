@@ -2,12 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50vw;
+    height: 100vh;
     font-size: 5vw;
 }
 
 .title {
-    margin-top: 2vh;
+    margin-top: 3rem;
     font-size: 5rem;
 }
 
@@ -24,7 +24,7 @@
     font-weight: bold;
 }
 
-p, li, button, input {
+p, li, button, input, select, option, label {
     line-height: 1.2;
     font-size: 1.5rem;
 }

@@ -33,10 +33,12 @@ async function load_json(path) {
     }
 }
 
-function load_exercise(classname, amount, settings) {
+function load_exercise(classname, amount) {
     const elements = document.getElementsByClassName(classname);
+    const tense = document.getElementById("toolbar").getElementsByTagName("select")[0].value;
     for( let i=0; i<elements.length; i++) {
-        window[classname].generate(elements[i], amount, settings);
+        elements[i].innerHTML = "";
+        window[classname].generate(elements[i], amount, tense);
     }
 }
 
@@ -54,6 +56,9 @@ var gaptext = {
         const data = document.getElementById(e.dataTransfer.getData("dnd"));
         if (data.classList.contains(tag) && ((e.target.classList.contains("gap") && e.target.innerHTML == "") || e.target.classList.contains("container"))) {
             e.target.appendChild(data);
+        }
+        if (e.target.parentElement.classList.contains("container")) {
+            e.target.parentElement.appendChild(data);
         }
     },
     
@@ -89,7 +94,7 @@ var gaptext = {
         }
     },
 
-    generate: async function(e, amount) {
+    generate: async function(e, amount, tense) {
         taskname = unique_id();
 
         const text = document.createElement("p");
@@ -102,7 +107,8 @@ var gaptext = {
 
         const check_button = document.createElement("button");
         check_button.onclick = function(event){ gaptext.check(event); };
-        check_button.innerHTML = "Check";
+        check_button.classList.add("check");
+        check_button.innerHTML = "Überprüfen";
 
         function createGap(solution) {
             const gap = document.createElement("div");
@@ -134,7 +140,7 @@ var gaptext = {
         }
 
         const json_data = await load_json("gaptext.json");
-        const content = choose_array(JSON.parse(json_data), amount);
+        const content = choose_array(JSON.parse(json_data)[tense], amount);
 
         for( var i=0; i<content.length; i++ ) {
             let data = String(content[i][0]);
@@ -187,9 +193,9 @@ var multiplechoice = {
         }
     },
 
-    generate: async function(e, amount) {
+    generate: async function(e, amount, tense) {
         const json_data = await load_json("multiplechoice.json");
-        const content = choose_array(JSON.parse(json_data), amount);
+        const content = choose_array(JSON.parse(json_data)[tense], amount);
 
         function createChoice(solution, name) {
             const choice = document.createElement("div");
@@ -226,10 +232,11 @@ var multiplechoice = {
             e.appendChild(container);
         }
 
-        const checkbutton = document.createElement("button");
-        checkbutton.innerHTML = "check";
-        checkbutton.onclick = function(event) { multiplechoice.check(event) };
-        e.appendChild(checkbutton);
+        const check_button = document.createElement("button");
+        check_button.innerHTML = "Überprüfen";
+        check_button.onclick = function(event) { multiplechoice.check(event) };
+        check_button.classList.add("check");
+        e.appendChild(check_button);
     }
 };
 
@@ -283,7 +290,13 @@ var conjugateverbs = {
         
             // Index: Übereinstimmungen geteilt durch durchschnittliche Länge der Wörter
             const averageLength = (phonetic1.length + phonetic2.length) / 2;
-            return (matchCount / averageLength).toFixed(2);
+            let index = (matchCount / averageLength).toFixed(2);
+
+            if (index == 1 && word1 != word2) {
+                index -= 0.1;
+            }
+
+            return index;
         }
 
         let right = [];
@@ -323,9 +336,7 @@ var conjugateverbs = {
         }
     },
 
-    generate: async function(e, amount, settings) {
-        const tense = settings[0];
-
+    generate: async function(e, amount, tense) {
         const json_data = await load_json("conjugateverbs.json");
         const content = choose_array(JSON.parse(json_data)[tense], amount);
 
@@ -350,17 +361,16 @@ var conjugateverbs = {
             e.appendChild(choice);
         }
 
-        const checkbutton = document.createElement("button");
-        checkbutton.innerHTML = "check";
-        checkbutton.onclick = function(event) { conjugateverbs.check(event); };
-        e.appendChild(checkbutton);
+        const check_button = document.createElement("button");
+        check_button.innerHTML = "Überprüfen";
+        check_button.onclick = function(event) { conjugateverbs.check(event); };
+        check_button.classList.add("check");
+        e.appendChild(check_button);
     }
 };
 
 var memory = {
-    generate: async function(e, amount, settings) {
-        const tense = settings[0];
-
+    generate: async function(e, amount, tense) {
         const json_data = await load_json("memory.json");
         const content = choose_array(JSON.parse(json_data)[tense], amount);
 

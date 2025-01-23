@@ -2,6 +2,11 @@ body {
     padding-right: 1.5vw;
 }
 
+#toolbar {
+    display: flex;
+    gap: 30px;
+}
+
 .gaptext{
     .gap {
         min-width: 200px;
@@ -36,7 +41,8 @@ body {
         background-color: #dcdbdb;
         padding: 1rem;
         border-radius: 14px;
-        display: inline-flex;
+        display: flex;
+        flex-wrap: wrap;
         gap: 3rem;
     }
 }
@@ -59,10 +65,13 @@ body {
     margin-top: 3rem;
 }
 
-button {
-    display: block;
+button, select {
+    
     padding: 0.15rem 0.75rem;
     border-radius: 14px;
+}
+
+.check {
     margin-top: 40px;
 }
 
@@ -94,14 +103,15 @@ button {
 .memory {
     .container {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 5%;
+        gap: 2%;
 
 
 
 
         .card {
-            width: 18%;
+            width: 15%;
             aspect-ratio: 3 / 2;
             text-align: center;
             transform-style: preserve-3d;
@@ -110,6 +120,7 @@ button {
             border-radius: 18px;
             transition: 0.8s;
             perspective: 1000px;
+            margin-bottom: 2%;
             
 
             .front, .back {
@@ -135,9 +146,10 @@ button {
                 font-size: 3rem;
             }
             .back {
-                background-image: url("assets/card_background.jpeg");
+                background-image: url("assets/card_back.jpeg");
                 background-repeat: repeat;
                 background-position: center;
+                background-size: cover;
             }
 
         }

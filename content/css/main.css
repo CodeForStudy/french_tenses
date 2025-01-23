@@ -4,7 +4,6 @@
     display: grid;
     grid-template-columns: [left] 20vw [middle] 80vw [right];
     margin: 0;
-    font-family: "Roboto", sans-serif;
     height: 100vh;
     overflow: hidden;
     font-size: 1.2rem;
@@ -24,7 +23,7 @@
     align-self: stretch;
     justify-self: stretch;
 }
-.sidebar a {
+.sidebar a:not(.credits) {
     display: block;
     padding: 10px;
     text-decoration: none;
@@ -33,6 +32,43 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.sidebar a:hover {
+.credits {
+    display: block;
+    padding: 20px 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+}
+.sidebar a:not(.credits):hover {
     background-color: #ddd;
+}
+
+#warning {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    font-size: 5vw;
+}
+
+@media (max-aspect-ratio: 4 / 3 )  {
+    #body * {
+        display: none;
+    }
+    #warning {
+        display: flex;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #body * {
+        display: none;
+    }
+    #warning {
+        display: flex;
+    }
 }
