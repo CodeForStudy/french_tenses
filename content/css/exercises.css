@@ -74,6 +74,10 @@ button, select {
         display: flex;
         gap: 1rem;
         vertical-align: center;
+
+        input {
+            vertical-align: middle;
+        }
     }
 
     .right {
