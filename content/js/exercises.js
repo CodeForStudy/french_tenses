@@ -48,6 +48,7 @@ var gaptext = {
     },
       
     drag: function(e) {
+        e.preventDefault();
         e.dataTransfer.setData("dnd", e.target.id);
     },
       
@@ -60,8 +61,7 @@ var gaptext = {
         if (e.target.parentElement.classList.contains("container")) {
             e.target.parentElement.appendChild(data);
         }
-    },
-    
+    },    
     check: function(e) {
         const gaps = e.target.parentElement.getElementsByClassName("gap");
         right = [];

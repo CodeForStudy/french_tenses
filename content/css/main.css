@@ -26,10 +26,10 @@
 }
 .sidebar a:not(.credits) {
     display: block;
-    padding: 5px;
+    padding: 3px;
     text-decoration: none;
     color: #333;
-    margin-bottom: 7.5px;
+    margin-bottom: 5px;
     border-radius: 4px;
     cursor: pointer;
 }

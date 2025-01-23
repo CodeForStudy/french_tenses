@@ -5,6 +5,7 @@ body {
 #toolbar {
     display: flex;
     gap: 30px;
+    vertical-align: center;
 }
 
 .gaptext{
@@ -16,6 +17,7 @@ body {
         min-height: 1.8rem;
         margin: -100% 0;
         padding: 0 0.3rem;
+        -webkit-user-drop: element;
     }
 
     p {
@@ -25,6 +27,7 @@ body {
     .label {
         min-width: 200px;
         line-height: 1.5;
+        -webkit-user-drag: element;
     }
 
     .wrong {
@@ -87,6 +90,7 @@ button, select {
         border: 1px solid black;
         min-width: 200px;
         padding: 0 0.5rem;
+        vertical-align: center;
     }
 
     .right input {
