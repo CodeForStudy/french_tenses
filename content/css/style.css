@@ -36,6 +36,7 @@ p, li, button, input, select, option, label {
 }
 
 .list li {
+    margin-left: 5px;
     margin-bottom: 10px;
 }
 
