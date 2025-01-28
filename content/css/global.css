@@ -4,3 +4,20 @@
     border: 0;
     font-family: "Roboto", sans-serif;
 }
+
+body {
+    top: 0px !important;
+}
+
+#\:1\.container {
+    display: none !important;
+}
+
+#goog-gt-tt {
+    display: none !important;
+}
+
+font {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}

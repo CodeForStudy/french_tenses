@@ -42,6 +42,14 @@ function load_exercise(classname, amount) {
     }
 }
 
+function generateCheckButton(func) {
+    const check_button = document.createElement("button");
+    check_button.onclick = function(event){ func(event); };
+    check_button.classList.add("check");
+    check_button.innerHTML = "Überprüfen";
+    return check_button;
+}
+
 var gaptext = {
     allowDrop: function(e) {
         e.preventDefault();
@@ -70,19 +78,19 @@ var gaptext = {
             elements[i].classList.remove("selected");
         }
 
-        e.target.classList.add("selected");
+        e.currentTarget.classList.add("selected");
         gaptext.touch_dataTransfer = e.target;
     },
 
     touch_paste: function(e, tag) {
         const data = this.touch_dataTransfer;
-        if (data.classList.contains(tag) && ((e.target.classList.contains("gap") && e.target.innerHTML == "") || e.target.classList.contains("container")) && data.parentElement != e.target) {
-            e.target.appendChild(data);
+        if (data.classList.contains(tag) && ((e.currentTarget.classList.contains("gap") && e.currentTarget.innerHTML == "") || e.currentTarget.classList.contains("container")) && data.parentElement != e.currentTarget) {
+            e.currentTarget.appendChild(data);
             data.classList.remove("selected");
             gaptext.touch_dataTransfer = undefined;
         }
-        if (data.classList.contains(tag) && e.target.parentElement.classList.contains("container") && data.parentElement != e.target.parentElement) {
-            e.target.parentElement.appendChild(data);
+        if (data.classList.contains(tag) && e.currentTarget.parentElement.classList.contains("container") && data.parentElement != e.currentTarget.parentElement) {
+            e.currentTarget.parentElement.appendChild(data);
             data.classList.remove("selected");
             gaptext.touch_dataTransfer = undefined;
         }
@@ -90,7 +98,7 @@ var gaptext = {
     },
 
     check: function(e) {
-        const gaps = e.target.parentElement.getElementsByClassName("gap");
+        const gaps = e.currentTarget.parentElement.getElementsByClassName("gap");
         right = [];
         wrong = [];
         for(let i=0; i<gaps.length; i++) {
@@ -133,10 +141,7 @@ var gaptext = {
         container.ontouchend = function(event){ gaptext.touch_paste(event, taskname); };
         container.ondragover = function(event){ gaptext.allowDrop(event); };
 
-        const check_button = document.createElement("button");
-        check_button.onclick = function(event){ gaptext.check(event); };
-        check_button.classList.add("check");
-        check_button.innerHTML = "Überprüfen";
+        const check_button = generateCheckButton(function(event){ gaptext.check(event); });
 
         function createGap(solution) {
             const gap = document.createElement("div");
@@ -196,7 +201,7 @@ var gaptext = {
 
 var multiplechoice = {
     check: function(e) {
-        const choices = e.target.parentElement.getElementsByClassName("choice");
+        const choices = e.currentTarget.parentElement.getElementsByClassName("choice");
         right = [];
         wrong = [];
         for(let i=0; i<choices.length; i++) {
@@ -262,10 +267,8 @@ var multiplechoice = {
             e.appendChild(container);
         }
 
-        const check_button = document.createElement("button");
-        check_button.innerHTML = "Überprüfen";
-        check_button.onclick = function(event) { multiplechoice.check(event) };
-        check_button.classList.add("check");
+        const check_button = generateCheckButton(function(event) { multiplechoice.check(event) });
+
         e.appendChild(check_button);
     }
 };
@@ -332,7 +335,7 @@ var conjugateverbs = {
         let right = [];
         let moderate = [];
         let wrong = [];
-        const segments = e.target.parentElement.getElementsByClassName("segment");
+        const segments = e.currentTarget.parentElement.getElementsByClassName("segment");
 
         for(let i=0; i<segments.length; i++) {
             const equality = similarityIndex(segments[i].dataset.solution, String(segments[i].children[1].value));
@@ -391,10 +394,7 @@ var conjugateverbs = {
             e.appendChild(choice);
         }
 
-        const check_button = document.createElement("button");
-        check_button.innerHTML = "Überprüfen";
-        check_button.onclick = function(event) { conjugateverbs.check(event); };
-        check_button.classList.add("check");
+        const check_button = generateCheckButton(function(event) { conjugateverbs.check(event); });
         e.appendChild(check_button);
     }
 };
@@ -441,7 +441,7 @@ var memory = {
     },
 
     check: function(e) {
-        const element = e.target.parentElement;
+        const element = e.currentTarget;
 
         if (element.classList.contains("hidden")) {
             return;

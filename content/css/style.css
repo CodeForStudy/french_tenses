@@ -27,6 +27,12 @@
 p, li, button, input, select, option, label {
     line-height: 1.2;
     font-size: 1.5rem;
+    z-index: 1;
+    position: relative;
+}
+font {
+    position: relative;
+    z-index: -99;
 }
 
 .list {

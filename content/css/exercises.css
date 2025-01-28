@@ -74,9 +74,13 @@ button, select {
         display: flex;
         gap: 1rem;
         vertical-align: center;
+        margin-left: 10px;
 
         input {
             vertical-align: middle;
+            padding: auto;
+            vertical-align: center;
+            scale: 1.2;
         }
     }
 
@@ -137,6 +141,11 @@ button, select {
             perspective: 1000px;
             margin-bottom: 2%;
             
+            p {
+                word-wrap: break-word;
+                user-select: none;
+            }
+            
 
             .front, .back {
                 height: 100%;
@@ -187,4 +196,8 @@ button, select {
     0% {scale: 1;}
     75% {scale: 1;}
     100% {scale: 0;}
+}
+
+body {
+    top: 0;
 }
