@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./home.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="animated-heading"><span style="transition-delay: 0s; opacity: 1; transform: translateY(0px);">W</span><span style="transition-delay: 0.2s; opacity: 1; transform: translateY(0px);">i</span><span style="transition-delay: 0.4s; opacity: 1; transform: translateY(0px);">l</span><span style="transition-delay: 0.6s; opacity: 1; transform: translateY(0px);">l</span><span style="transition-delay: 0.8s; opacity: 1; transform: translateY(0px);">k</span><span style="transition-delay: 1s; opacity: 1; transform: translateY(0px);">o</span><span style="transition-delay: 1.2s; opacity: 1; transform: translateY(0px);">m</span><span style="transition-delay: 1.4s; opacity: 1; transform: translateY(0px);">m</span><span style="transition-delay: 1.6s; opacity: 1; transform: translateY(0px);">e</span><span style="transition-delay: 1.8s; opacity: 1; transform: translateY(0px);">n</span><span style="transition-delay: 2s; opacity: 1; transform: translateY(0px);">!</span></h1>
+        <div class="translation-widget">
+            <div class="language-switch" onclick="swapFlags()">
+                <div class="flag de-flag from"></div>
+                <span class="arrow">→</span>
+                <div class="flag fr-flag to"></div>
+            </div>
+            <div class="input-container">
+                <textarea placeholder="Übersetze ein Wort oder auch ein ganzen Text."></textarea>
+                <button>Übersetzen</button>
+            </div>
+        </div>
+        <div class="translation-result" id="translation-result"></div>
+    </div>
+    <script src="./home.js"></script>
+</body>
+</html>

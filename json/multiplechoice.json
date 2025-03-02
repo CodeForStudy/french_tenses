@@ -366,13 +366,6 @@
         ["Nous __ un grand événement.", [["organiserions", true], ["organisons", false], ["organiseront", false]]],
         ["Vous __ une longue discussion.", [["aurez", true], ["avez", false], ["aura", false]]],
         ["Ils __ d'autres idées.", [["auraient", true], ["ont", false], ["ont eu", false]]],
-        ["Elles __ à l'école si elles avaient le temps.", [["iraient", true], ["vont", false], ["iront", false]]],
-        ["Je __ partir demain.", [["voudrais", true], ["veux", false], ["voudra", false]]],
-        ["Tu __ plus souvent chez nous.", [["viendrais", true], ["viens", false], ["viendra", false]]],
-        ["Il __ s'amuser.", [["pourrait", true], ["peut", false], ["pourra", false]]],
-        ["Elle __ venir, mais elle est occupée.", [["pourrait", true], ["peut", false], ["pourra", false]]],
-        ["Nous __ d'autres questions.", [["aurions", true], ["avons", false], ["avions", false]]],
-        ["Vous __ de l'aide.", [["auriez", true], ["avez", false], ["aurez", false]]],
-        ["Ils __ un problème avec le plan.", [["auraient", true], ["ont", false], ["avaient", false]]]
-    ]      
+        ["Elles __ à la plage.", [["iraient", true], ["vont", false], ["iront", false]]]
+    ]
 }

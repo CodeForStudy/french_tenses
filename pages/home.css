@@ -1,0 +1,310 @@
+body, html {
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.animated-heading {
+    font-size: 6em; /* Größere Schriftgröße für den animierten Text */
+    margin-bottom: 80px; /* Mehr Abstand nach unten zum input-container */
+    position: relative;
+    display: inline-block;
+}
+
+.animated-heading span {
+    margin: 0 0.2vh;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease, transform 1s ease; /* Langsamere Animation */
+}
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+.translation-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.language-switch img {
+    width: 30px;
+    height: 20px;
+}
+
+.language-switch .arrow {
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+.language-switch .flag {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    overflow: hidden;
+}
+
+.language-switch .flag::before,
+.language-switch .flag::after {
+    content: '';
+    flex: 1;
+}
+
+.language-switch .fr-flag {
+    background: linear-gradient(to right, blue 33.33%, white 33.33%, white 66.66%, red 66.66%);
+}
+
+.language-switch .de-flag {
+    background: linear-gradient(to bottom, black 33.33%, red 33.33%, red 66.66%, gold 66.66%);
+}
+
+.translation-widget input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.translation-widget button {
+    padding: 10px 20px;
+    background-color: #45a049;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.translation-widget button:hover {
+    background-color: #3e8e41;
+}
+
+.input-container {
+    min-height: 15vh;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Elemente am rechten Rand ausrichten */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+.input-container textarea {
+    font-size: 1.1rem;
+    height: 15vh;
+    padding: 10px;
+    width: 60vw;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    resize: none;
+    overflow: auto;
+}
+
+.input-container textarea:focus {
+    outline: none;
+}
+
+.input-container button {
+    padding: 10px 20px; /* Größere Polsterung für größeren Button */
+    font-size: 16px; /* Größere Schriftgröße */
+    background-color: #45a049;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 32px;
+}
+
+.input-container button:hover {
+    background-color: #3e8e41;
+}
+
+.arrow {
+    font-size: 2em; /* Größere Schriftgröße für den Pfeil */
+    margin: 20px 0; /* Mehr Abstand zu den Flaggen */
+}
+
+.flag {
+    margin: 0 10px; /* Abstand zwischen den Flaggen */
+}
+
+.translation-result {
+    display: none;
+    margin-top: 5vh;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    max-width: 60vw;
+    text-align: left;
+}
+
+.entry {
+    margin-bottom: 20px;
+}
+
+.hit {
+    margin-bottom: 10px;
+}
+
+.hit p {
+    margin: 5px 0;
+}
+
+.hit .headword {
+    font-weight: bold;
+}
+
+.hit .genus {
+    color: blue;
+}
+
+/* CSS */
+.translation {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.arab-block {
+  margin-left: 1em;
+  font-style: italic;
+}
+
+.examples-container {
+  padding: 0.5em;
+  border-left: 3px solid #ccc;
+  margin-bottom: 1em;
+}
+
+.flexion, .phonetics, .wordclass, .verbclass, .genus {
+  font-style: italic;
+  color: #666;
+  margin-left: 0.2em;
+}
+
+/* Neue Styles für rom-Header und Subheader */
+.rom-container h2 {
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 0.5em;
+}
+.rom-container h4 {
+    background-color: #e0e0e0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 0.5em;
+}
+
+/* Verbesserungen für Übersetzungstabellen in rom-Containern */
+.rom-container table {
+    margin-top: 0.5em; 
+    border-collapse: collapse;
+    width: 100%;
+}
+.rom-container table td {
+    padding: 5px;
+    border: none;
+}
+.rom-container table td:first-child {
+    text-align: left;
+    width: 50%;
+}
+.rom-container table td:last-child {
+    text-align: right;
+    width: 50%;
+}
+
+/* Neue Regel: Horizontale Trennstriche in der Übersetzungstabelle */
+.rom-container table tr {
+    border-bottom: 1px solid #ccc;
+}
+.rom-container table tr:last-child {
+    border-bottom: none;
+}
+
+/* Verkleinerter Text für Flexionen in rom-Headern */
+.rom-container h2 .flexion {
+    font-size: 0.8em;
+}
+
+/* Geschlechtsspezifische Farben für genus-Acronyme */
+.rom-container .genus acronym[title="Maskulinum"],
+.rom-container .genus acro[title="Maskulinum"] {
+    color: blue;
+}
+.rom-container .genus acronym[title="Femininum"],
+.rom-container .genus acro[title="Femininum"] {
+    color: red;
+}
+.rom-container .genus acronym[title="Neutrum"],
+.rom-container .genus acro[title="Neutrum"] {
+    color: green;
+}
+
+/* Geschlechtsspezifische Farben für genus-Acronyme in Tabellen und generell */
+.rom-container .genus acronym[title="Maskulinum"] {
+    color: blue;
+}
+.rom-container .genus acronym[title="Femininum"] {
+    color: red;
+}
+.rom-container .genus acronym[title="Neutrum"] {
+    color: green;
+}
+/* Stelle sicher, dass auch in Übersetzungstabellen .genus zählen */
+.translation .genus acronym[title="Maskulinum"],
+.translation .genus {
+    color: blue;
+}
+.translation .genus acronym[title="Femininum"],
+.translation .genus {
+    color: red;
+}
+.translation .genus acronym[title="Neutrum"],
+.translation .genus {
+    color: green;
+}
+
+/* Neue Regeln für Translation-Tabellen (text-translation) */
+.translation-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.translation-table td {
+    padding: 5px;
+    border: none;
+}
+.translation-table tr {
+    border-bottom: 1px solid #ccc;
+}
+.translation-table tr:last-child {
+    border-bottom: none;
+}
+.translation-table td:first-child {
+    text-align: left;
+    width: 50%;
+}
+.translation-table td:last-child {
+    text-align: right;
+    width: 50%;
+}

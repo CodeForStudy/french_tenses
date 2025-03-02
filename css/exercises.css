@@ -1,5 +1,13 @@
 body {
-    padding-right: 1.5vw;
+    padding: 1.5vw; /* zuvor: padding-right: 1.5vw; */
+}
+
+#\:1\.container {
+    display: none !important;
+}
+
+#goog-gt-tt {
+    display: none !important;
 }
 
 #toolbar {
@@ -161,7 +169,7 @@ button, select {
 
             .front {
                 transform: rotateY(180deg);
-                background-image: url("assets/card_front.jpg");
+                background-image: url("../../assets/card_front.jpg");
                 background-repeat: repeat;
                 background-position: center;
                 display: flex;
@@ -170,7 +178,7 @@ button, select {
                 font-size: 2vw;
             }
             .back {
-                background-image: url("assets/card_back.jpeg");
+                background-image: url("../../assets/card_back.jpeg");
                 background-repeat: repeat;
                 background-position: center;
                 background-size: cover;

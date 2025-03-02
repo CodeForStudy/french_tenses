@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercices de conjugaison française</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="content/css/global.css">
-    <link rel="stylesheet" href="content/css/main.css">
-    <script>
-        function loadContent(url) {
-            document.getElementById('main-content').src = 'content/' + url;
-        }
-    </script>
-</head>
-<body onload="loadContent('start.html')" id="body">
-    <div class="sidebar">
-        <h2 onclick="loadContent('start.html')"><strong>Französisch</strong></h2>
-        <h3>Temps</h3>
-        <a onclick="loadContent('passeSimple.html')">Passé simple</a>
-        <a onclick="loadContent('passeCompose.html')">Passé Composé</a>
-        <a onclick="loadContent('imparfait.html')">Imparfait</a>
-        <a onclick="loadContent('plusQueParfait.html')">Plus-que-parfait</a>
-        <a onclick="loadContent('present.html')">Présent</a>
-        <a onclick="loadContent('futurSimple.html')">Futur Simple</a>
-        <a onclick="loadContent('conditionnelPresent.html')">Conditionnel présent</a>
-        <h3>Exercices</h3>
-        <a onclick="loadContent('gaptext.html')">Texte d'espacement</a>
-        <a onclick="loadContent('multiplechoice.html')">Sélection multiple</a>
-        <a onclick="loadContent('conjugateverbs.html')">Verbes conjugués</a>
-        <a onclick="loadContent('memory.html')">Mémoire des temps</a>
-        <br>
-        <a href="https://www.github.com/codeforstudy" target="_blank" class="credits">Julian Kern, Timon Scheuer</a>
-    </div>
-
-    <iframe id="main-content"></iframe>
     
+    <title>Französisch Lernen</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="pages/home.html" target="content-frame">
+                <img src="assets/logo.png" alt="Logo" />
+            </a>
+        </div>
+        <div class="navbar-categories">
+            <div class="dropdown">
+                <a href="javascript:void(0);">Zeitformen</a>
+                <div class="dropdown-content">
+                    <a href="pages/tenses/passeSimple.html" target="content-frame">Passé simple</a>
+                    <a href="pages/tenses/passeCompose.html" target="content-frame">Passé composé</a>
+                    <a href="pages/tenses/imparfait.html" target="content-frame">Imparfait</a>
+                    <a href="pages/tenses/plusQueParfait.html" target="content-frame">Plus-que-parfait</a>
+                    <a href="pages/tenses/present.html" target="content-frame">Présent</a>
+                    <a href="pages/tenses/futurSimple.html" target="content-frame">Futur simple</a>
+                    <a href="pages/tenses/conditionnelPresent.html" target="content-frame">Conditionnel présent</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="javascript:void(0);">Übungen</a>
+                <div class="dropdown-content">
+                    <a href="pages/exercises/gaptext.html" target="content-frame">Texte d'espacement</a>
+                    <a href="pages/exercises/multiplechoice.html" target="content-frame">Sélection multiple</a>
+                    <a href="pages/exercises/conjugateverbs.html" target="content-frame">Verbes conjugués</a>
+                    <a href="pages/exercises/memory.html" target="content-frame">Mémoire des temps</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="javascript:void(0);">Werkzeuge</a>
+                <div class="dropdown-content">
+                    <a href="pages/tools/index.html" target="content-frame">Werkzeug-Seite</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="iframe-container">
+        <iframe name="content-frame" src="pages/home.html"></iframe>
+    </div>
 </body>
-<div id="warning">Bitte wechseln Sie in ein horizontales Bildschirmformat</div>
 </html>
