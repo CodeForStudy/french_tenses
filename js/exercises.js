@@ -50,10 +50,3 @@ function generateCheckButton(func) {
     check_button.innerHTML = "Überprüfen";
     return check_button;
 }
-
-
-
-
-
-
-

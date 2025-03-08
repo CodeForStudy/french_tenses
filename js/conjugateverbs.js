@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 var conjugateverbs = {
     check: function(e) {
 
